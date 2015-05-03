@@ -7,7 +7,7 @@ put the chromeExtinstaller.exe rlz_id.dll BDChromeExt.crx in the same directory,
 ## How to Config
 if you wan to install your extension, you should change the source code in `extinstaller.h`. Just read the code, it is easy to understand.
 ## TO DO
-some config shoudle not be in raw code, I will move it to file or generate config automatic from the *.crx file.
+some config should not be in raw code, I will move it to file or generate config automatic from the *.crx file.
 ## If You Have Problems
 You can email me, I will try to help you out.
 
