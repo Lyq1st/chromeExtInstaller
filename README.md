@@ -10,5 +10,5 @@ if you wan to install your extension, you should change the source code in `exti
 some config should not be in raw code, I will move it to file or generate config automatic from the *.crx file.
 ## If You Have Problems
 You can email me, I will try to help you out.
-
+@Lyq (admin#droid-sec.com, iamlyq4pub#gmail.com)
 
