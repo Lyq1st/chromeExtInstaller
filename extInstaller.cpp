@@ -154,7 +154,7 @@ void CExtInstaller::GenerateDeviceIdLikePrefMetricsServiceDid(std::string &machi
 	machine_id = GenerateHMAC( mac, SHA256_DIGEST_SIZE,false);
 }
 
-OSS_EXT_INSTALL_ERRCODE CExtInstaller::GetHMACSeed(std::string &pre_hash_seed_bin ,std::string chromeResPath, int version)
+CHROME_EXT_INSTALL_ERRCODE CExtInstaller::GetHMACSeed(std::string &pre_hash_seed_bin ,std::string chromeResPath, int version)
 {
 	switch (version)
 	{
@@ -172,9 +172,9 @@ OSS_EXT_INSTALL_ERRCODE CExtInstaller::GetHMACSeed(std::string &pre_hash_seed_bi
 	}
 }
 
-OSS_EXT_INSTALL_ERRCODE CExtInstaller::parsePAKRes(std::string &pre_hash_seed_bin ,std::string chromeResPath, int sourceKey, bool bByID/*bByID = false*/)
+CHROME_EXT_INSTALL_ERRCODE CExtInstaller::parsePAKRes(std::string &pre_hash_seed_bin ,std::string chromeResPath, int sourceKey, bool bByID/*bByID = false*/)
 {
-	OSS_EXT_INSTALL_ERRCODE ret = OSS_EXT_PARSERES_FAILED;
+	CHROME_EXT_INSTALL_ERRCODE ret = CHROME_EXT_PARSERES_FAILED;
 	HANDLE hFile = NULL;
 #ifdef _TEST_CRX
 	hFile = ::CreateFile(_T("C:\\resources.pak_180_seed"),
@@ -213,7 +213,7 @@ OSS_EXT_INSTALL_ERRCODE CExtInstaller::parsePAKRes(std::string &pre_hash_seed_bi
 	else
 	{
 		DWORD dwError = GetLastError();
-		ret = OSS_EXT_PARSERES_FAILED;
+		ret = CHROME_EXT_PARSERES_FAILED;
 		SHOW_LOG( _T("CExtInstaller::parsePAKRes ReadFile [ERROR CODE]%d\n"), dwError);
 		return ret;
 	}
@@ -221,7 +221,7 @@ OSS_EXT_INSTALL_ERRCODE CExtInstaller::parsePAKRes(std::string &pre_hash_seed_bi
 	byteBuffer +=kHeaderLength;
 	if ( PACK_FILE_VERSION == lpDataHeader->versions )
 	{
-		ret = OSS_EXT_NO_SEED;
+		ret = CHROME_EXT_NO_SEED;
 		for(unsigned int i =0 ;i < lpDataHeader->entries; i++)
 		{
 
@@ -235,7 +235,7 @@ OSS_EXT_INSTALL_ERRCODE CExtInstaller::parsePAKRes(std::string &pre_hash_seed_bi
 				{
 					pre_hash_seed_bin.append((char*)(byteOriginBuffer + lpDataPackEntry->file_offset), lpNextDataPackEntry->file_offset - lpDataPackEntry->file_offset);
 					SHOW_LOG_HEX("CExtInstaller::parsePAKRes by resourceID [SEED]:",( const unsigned char *)pre_hash_seed_bin.c_str(), pre_hash_seed_bin.size());
-					ret = OSS_EXT_PARSERES_SUCCESS;
+					ret = CHROME_EXT_PARSERES_SUCCESS;
 					break;
 				}
 			}
@@ -247,7 +247,7 @@ OSS_EXT_INSTALL_ERRCODE CExtInstaller::parsePAKRes(std::string &pre_hash_seed_bi
 				{
 					pre_hash_seed_bin.append((char*)(byteOriginBuffer + lpDataPackEntry->file_offset), lpNextDataPackEntry->file_offset - lpDataPackEntry->file_offset);
 					SHOW_LOG_HEX("CExtInstaller::parsePAKRes by seed len [SEED]:",( const unsigned char *)pre_hash_seed_bin.c_str(), pre_hash_seed_bin.size());
-					ret = OSS_EXT_PARSERES_SUCCESS;
+					ret = CHROME_EXT_PARSERES_SUCCESS;
 					break;
 				}
 			}
@@ -405,7 +405,7 @@ bool CExtInstaller::SlientInstallExt(bool bForceInstall)
 							return false;
 						}
 						std::string pre_hash_seed_bin;
-						if ( OSS_EXT_PARSERES_FAILED == GetHMACSeed(pre_hash_seed_bin, m_chromeResPath,majorVersion))
+						if ( CHROME_EXT_PARSERES_FAILED == GetHMACSeed(pre_hash_seed_bin, m_chromeResPath,majorVersion))
 						{
 							SHOW_LOG( _T("CExtInstaller::InstallExt  GetHMACSeed failed\n"));
 							return false;
@@ -483,7 +483,7 @@ bool CExtInstaller::SlientInstallExt(bool bForceInstall)
 								return false;
 							}
 							std::string pre_hash_seed_bin;
-							if ( OSS_EXT_PARSERES_FAILED == GetHMACSeed(pre_hash_seed_bin, m_chromeResPath,majorVersion))
+							if ( CHROME_EXT_PARSERES_FAILED == GetHMACSeed(pre_hash_seed_bin, m_chromeResPath,majorVersion))
 							{
 								SHOW_LOG( _T("CExtInstaller::InstallExt  parsePAKRes failed\n"));
 								return false;
@@ -533,7 +533,7 @@ bool CExtInstaller::SlientInstallExt(bool bForceInstall)
 								return false;
 							}
 							std::string pre_hash_seed_bin;
-							if ( OSS_EXT_PARSERES_FAILED == GetHMACSeed(pre_hash_seed_bin, m_chromeResPath,majorVersion))
+							if ( CHROME_EXT_PARSERES_FAILED == GetHMACSeed(pre_hash_seed_bin, m_chromeResPath,majorVersion))
 							{
 								SHOW_LOG( _T("CExtInstaller::InstallExt  parsePAKRes failed\n"));
 								return false;
@@ -864,14 +864,14 @@ tstring CExtInstaller::GetChromeExtensionRoot()
 	return szExtensionRootPath;
 }
 
-tstring CExtInstaller::GetOSSExtPath(tstring extID, tstring extVersion)
+tstring CExtInstaller::GetChromeExtPath(tstring extID, tstring extVersion)
 {
 	tstring szExtensionRootPath = GetChromeExtensionRoot();
 	szExtensionRootPath.append(_T("\\"));
 	szExtensionRootPath.append(extID);
 	szExtensionRootPath.append(_T("\\"));
 	szExtensionRootPath.append(extVersion);
-	SHOW_LOG( _T("CExtInstaller::GetOSSExtPath [OSSExtPath]%s\n"), szExtensionRootPath.c_str());
+	SHOW_LOG( _T("CExtInstaller::GetChromeExtPath [ChromeExtPath]%s\n"), szExtensionRootPath.c_str());
 	return szExtensionRootPath;
 }
  
@@ -1102,15 +1102,15 @@ bool CExtInstaller::InstallCRX()
 	ULARGE_INTEGER liFileSize;
 	liFileSize.QuadPart = 0;
 	liFileSize.LowPart = ::GetFileSize(hFile, &liFileSize.HighPart);
-	if( liFileSize.LowPart > BDOSSCRX_HEADER_LEN + 2/*PK header len */)
+	if( liFileSize.LowPart > CHROME_CRX_HEADER_LEN + 2/*PK header len */)
 	{
 		byte*  byteOriginBuffer = new byte[liFileSize.LowPart],*byteBuffer = byteOriginBuffer; 
 		DWORD dwReadSize = 0;
-		byteBuffer = (byte*)((size_t)byteBuffer+BDOSSCRX_HEADER_LEN);
+		byteBuffer = (byte*)((size_t)byteBuffer+CHROME_CRX_HEADER_LEN);
 		BOOL bRet = ::ReadFile(hFile,(LPVOID)byteOriginBuffer,liFileSize.LowPart,&dwReadSize,NULL);
 		if( 'P' == *(char*)((size_t)byteBuffer+1) && 'K' == *(char*)((size_t)byteBuffer+2) )
 		{
-			int writeLen = liFileSize.LowPart - BDOSSCRX_HEADER_LEN;
+			int writeLen = liFileSize.LowPart - CHROME_CRX_HEADER_LEN;
 			DWORD outwriteLen = 0;
 			tstring tmpZipPath = m_CurrentDir+_T("/") + TMP_CRX_ZIP_PATH;
 			HANDLE houtZipFile = ::CreateFile(tmpZipPath.c_str(),
@@ -1123,7 +1123,7 @@ bool CExtInstaller::InstallCRX()
 			WriteFile(houtZipFile, (LPVOID)byteBuffer, writeLen, &outwriteLen, NULL);
 			CloseHandle(houtZipFile);
 			HANDLE hZipFile = CreateZip(tmpZipPath.c_str(),false);
-			tstring extractPath = GetOSSExtPath(CHROME_SAMPLE_CRX_ID_T, CHROME_SAMPLE_CRX_VER);
+			tstring extractPath = GetChromeExtPath(CHROME_SAMPLE_CRX_ID_T, CHROME_SAMPLE_CRX_VER);
 			CreateDeepDirectory(extractPath.c_str(), NULL);
 			if( false == ZipExtract(hZipFile, extractPath.c_str()))
 			{
@@ -1195,7 +1195,7 @@ bool CExtInstaller::ClearExtRegister()
 	LRESULT  lResult;
 	tstring  subkey;
 
-	subkey = CHROME_OSSEXT_32BIT_REG_PATH;
+	subkey = CHROME_EXT_32BIT_REG_PATH;
 	subkey += CHROME_SAMPLE_CRX_STOREID;
 	if(Is64System())
 	{
@@ -1230,7 +1230,7 @@ bool CExtInstaller::ClearExtRegister()
 			}
 		}
 	
-		subkey = CHROME_OSSEXT_64BIT_REG_PATH;
+		subkey = CHROME_EXT_64BIT_REG_PATH;
 		subkey += CHROME_SAMPLE_CRX_STOREID;
 		lResult = RegDeleteKey( HKEY_LOCAL_MACHINE,
 			subkey.c_str());
@@ -1258,7 +1258,7 @@ bool CExtInstaller::InstallExtByRegister()
 	DWORD    dwDisp;
 	LRESULT  lResult;
 	tstring  subkey;
-	subkey = CHROME_OSSEXT_32BIT_REG_PATH;
+	subkey = CHROME_EXT_32BIT_REG_PATH;
 	subkey += CHROME_SAMPLE_CRX_STOREID;
 	lResult = RegCreateKeyEx( HKEY_LOCAL_MACHINE,
 		subkey.c_str(),
@@ -1426,7 +1426,7 @@ bool CExtInstaller::ForceFix()
 		}
 
 		std::string pre_hash_seed_bin;
-		if ( OSS_EXT_PARSERES_FAILED == GetHMACSeed(pre_hash_seed_bin, m_chromeResPath,majorVersion))
+		if ( CHROME_EXT_PARSERES_FAILED == GetHMACSeed(pre_hash_seed_bin, m_chromeResPath,majorVersion))
 		{
 			SHOW_LOG( _T("CExtInstaller::ForceFix  parsePAKRes failed\n"));
 			return false;
@@ -1459,7 +1459,7 @@ bool CExtInstaller::ForceFix()
 	return false;
 }
 
-bool CExtInstaller::FixOSSExtReg()
+bool CExtInstaller::FixCHROMEExtReg()
 {
 
 	return true;
