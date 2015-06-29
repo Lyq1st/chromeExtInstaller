@@ -6,14 +6,12 @@
 	Purpose:	
 *********************************************************************/
 #pragma once
-#define CHROME_SEC_PREFERENCE_GEN_PATH _T("\\Google\\Chrome\\User Data\\Default\\Secure Preferences test")
+
 #define CHROME_SEC_PREFERENCE_PATH _T("\\Google\\Chrome\\User Data\\Default\\Secure Preferences")
 #define CHROME_PREFERENCE_PATH _T("\\Google\\Chrome\\User Data\\Default\\Preferences")
 #define CHROME_STATEFILE_PATH _T("\\Google\\Chrome\\User Data\\Local State")
 #define CHROME_DEFAULT_DIR_PATH _T("\\Google\\Chrome\\User Data\\Default")
-
 #define CHROME_REG_PATH "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\App Paths\\chrome.exe"
-
 
 /********************************************************************
 	HKEY_LOCAL_MACHINE\SOFTWARE\Google\Chrome\NativeMessagingHosts\com.my_company.my_application 
@@ -21,8 +19,6 @@
 	on x64 also can use 
 	HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Google\Chrome\NativeMessagingHosts\com.my_company.my_application
 *********************************************************************/
-
-#define CHROME_NATIVEAPP_REG_PATH _T("SOFTWARE\\Google\\Chrome\\NativeMessagingHosts\\com.baidu.antivirus")
 #define CHROME_EXT_64BIT_REG_PATH _T("SOFTWARE\\Wow6432Node\\Google\\Chrome\\Extensions\\")
 #define CHROME_EXT_32BIT_REG_PATH _T("SOFTWARE\\Google\\Chrome\\Extensions\\")
 
@@ -31,59 +27,101 @@
 #define CHROME_UNINSTALL_REG_PATH_T _T("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Google Chrome")
 //HKEY_CURRENT_USER
 
-//"update_url"="https://clients2.google.com/service/update2/crx"
-
-#define RLZDLL_PATH _T("rlz_id.dll")
-#define NAPP_PATH _T("ChromeNativeMessage.exe")
-#define SAMPLE_CRX_PATH _T("BDChromeExt.crx")
-
-#define TMP_CRX_ZIP_PATH _T("BDChromeExt.zip")
-
+//define some const string
 #define CHROME_EXTENSION_NODE "extensions"
 #define CHROME_SETTING_NODE "settings"
 #define CHROME_VERSION_NODE "last_chrome_version"
 #define CHROME_PLUGIN_NODE "plugins"
 #define CHROME_STATE_NODE "state"
 #define CHROME_APPDIR_PATH_NODE "last_internal_directory"
-#define CHROME_SAMPLE_CRX_ID "fbdfdjidlbaaclpflhcdceeoemlkbehd"
-#define CHROME_SAMPLE_NATIVE_HOST_NAME "com.baidu.antivirus"
-#define CHROME_SAMPLE_CRX_STOREID _T("fbdfdjidlbaaclpflhcdceeoemlkbehd")
-#define CHROME_EXTENSION_ROOT _T("\\Google\\Chrome\\User Data\\Default\\Extensions")
-#define CHROME_SAMPLE_CRX_ID_T _T("fbdfdjidlbaaclpflhcdceeoemlkbehd")
-#define CHROME_SAMPLE_CRX_VER _T("1.0.5_0")
-#define CHROME_SAMPLE_CRX_VER_A "1.0.5"
-
-#define CHROME_UPDATE_URL_VALUE_NAME _T("update_url")
-#define CHROME_UPDATE_URL_VALUE _T("https://clients2.google.com/service/update2/crx")
 
 #define CHROME_PROTECTION_NODE "protection"
 #define CHROME_MACS_NODE "macs"
 #define CHROME_STATE_LAYER_1 "profile"
 #define CHROME_STATE_LAYER_2 "preference_hashes"
 
+#define ZIP_HEADER_FLAG "PK"
+#define CHROME_BEFORE33_37_KEY_WORD "PrefMetricsService"
+
+//resources file
 #define CHROME_PAK_FILE "\\resources.pak"
-#define CHROME_SAMPLE_NATIVE_APPCONFIG_FILE _T("\\com.baidu.antivirus.json")
 
-#define CHROME_TEST_CRX_PATH "afbbkciigbkkonnbcagfkobemjhehfem"
+//extension path
+#define CHROME_EXTENSION_ROOT _T("\\Google\\Chrome\\User Data\\Default\\Extensions")
 
-#define CHROME_SAMPLE_EXT_OL_CONFIG "{\"active_permissions\":{\"api\":[\"nativeMessaging\",\"tabs\",\"webNavigation\"],\"explicit_host\":[\"http://*/*\",\"https://*/*\"]},\"creation_flags\":9,\"from_bookmark\":false,\"from_webstore\":true,\"granted_permissions\":{\"api\":[\"nativeMessaging\",\"tabs\",\"webNavigation\"],\"explicit_host\":[\"http://*/*\",\"https://*/*\"]},\"initial_keybindings_set\":true,\"install_time\":\"13058603716634482\",\"location\":1,\"manifest\":{\"background\":{\"scripts\":[\"background.js\"]},\"description\":\"百度杀毒，保护您的上网安全\",\"icons\":{\"128\":\"images/install_logo.png\",\"16\":\"images/menu_logo.png\",\"48\":\"images/extension_logo.png\"},\"key\":\"MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAooTracdic3lXa6l9nIxyLuWD2FDG1MMmzkNwUidGYI/a4aF9jisYnEMYxKJzHtk0Jh/13z9BjWWqm5ZUZbQaEKdmzcJA/aAlYe2rXOPpcoVw8XpVsZc9mKk9qz95DMmH1R4ENobhRfWsLlofdnAA15SqigHoX5/JdwLtzhhBCQiZBpWA8nh4Eozi+Th47+UyNvS9VPbQEQqGIIIwtd4YHGG8xZ/KymGEmc9v5Rh52DNzb2bq6QlMrEQee9+tLc+qy3M7BLD3qfRt4m2g+4faF3SuCACUlPNO0BF8yE7EG/iGcnszKDYj7ya82CGGl7not9A1tQ8zFft/koGRKd6o5wIDAQAB\",\"manifest_version\":2,\"name\":\"百度杀毒上网保护\",\"permissions\":[\"tabs\",\"webNavigation\",\"http://*/*\",\"https://*/*\",\"nativeMessaging\"],\"update_url\":\"https://clients2.google.com/service/update2/crx\",\"version\":\"1.0.5\"},\"path\":\"fbdfdjidlbaaclpflhcdceeoemlkbehd\\\\1.0.5_0\",\"state\":1,\"was_installed_by_default\":false,\"was_installed_by_oem\":false}"
-#define CHROME_SAMPLE_EXT_OL_CONFIG_T _T("{\"active_permissions\":{\"api\":[\"nativeMessaging\",\"tabs\",\"webNavigation\"],\"explicit_host\":[\"http://*/*\",\"https://*/*\"]},\"creation_flags\":9,\"ephemeral_app\":false,\"from_bookmark\":false,\"from_webstore\":true,\"granted_permissions\":{\"api\":[\"nativeMessaging\",\"tabs\",\"webNavigation\"],\"explicit_host\":[\"http://*/*\",\"https://*/*\"]},\"initial_keybindings_set\":true,\"install_time\":\"13059566385771333\",\"location\":1,\"manifest\":{\"background\":{\"scripts\":[\"background.js\"]},\"description\":\"百度杀毒，保护您的上网安全\",\"icons\":{\"128\":\"images/install_logo.png\",\"16\":\"images/menu_logo.png\",\"48\":\"images/extension_logo.png\"},\"key\":\"MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAooTracdic3lXa6l9nIxyLuWD2FDG1MMmzkNwUidGYI/a4aF9jisYnEMYxKJzHtk0Jh/13z9BjWWqm5ZUZbQaEKdmzcJA/aAlYe2rXOPpcoVw8XpVsZc9mKk9qz95DMmH1R4ENobhRfWsLlofdnAA15SqigHoX5/JdwLtzhhBCQiZBpWA8nh4Eozi+Th47+UyNvS9VPbQEQqGIIIwtd4YHGG8xZ/KymGEmc9v5Rh52DNzb2bq6QlMrEQee9+tLc+qy3M7BLD3qfRt4m2g+4faF3SuCACUlPNO0BF8yE7EG/iGcnszKDYj7ya82CGGl7not9A1tQ8zFft/koGRKd6o5wIDAQAB\",\"manifest_version\":2,\"name\":\"百度杀毒上网保护\",\"permissions\":[\"tabs\",\"webNavigation\",\"http://*/*\",\"https://*/*\",\"nativeMessaging\"],\"update_url\":\"https://clients2.google.com/service/update2/crx\",\"version\":\"1.0.5\"},\"path\":\"fbdfdjidlbaaclpflhcdceeoemlkbehd\\\\1.0.5_0\",\"state\":1,\"was_installed_by_default\":false,\"was_installed_by_oem\":false}")
-
-
+//define some const int value 
 #define ASCII_FS 13
 #define ASCII_SUB 32
 #define MAX_MACHINE_ID_LEN 128
 #define CHROME_CRX_HEADER_LEN 0x235
-#define ZIP_HEADER_FLAG "PK" 
 #define CHROME_SUPPORT_LAST_VER 43
 #define CHROME_SUPPORT_SEC_MINVER 37
 #define CHROME_SUPPORT_SLIENT_VER 33
+
 //native message passing support from version 28
 #define CHROME_SUPPORT_MINVER 28
+
 //currently, our chrome extension support from 31
 #define CHROME_SUPPORT_CRX_MINVER 31
 
-#define CHROME_BEFORE33_37_KEY_WORD "PrefMetricsService"
+//update config
+#define CHROME_UPDATE_URL_VALUE_NAME _T("update_url")
+#define CHROME_UPDATE_URL_VALUE _T("https://clients2.google.com/service/update2/crx")
+
+//rlz dll path
+#define RLZDLL_PATH _T("rlz_id.dll")
+
+
+
+/********************************************************************
+********************************************************************
+change these config to adapt your own extension
+*********************************************************************
+********************************************************************/
+
+//extension filename
+#define SAMPLE_CRX_PATH _T("BDChromeExt.crx")
+//extension tmp file
+#define TMP_CRX_ZIP_PATH _T("BDChromeExt.zip")
+//extension id
+#define CHROME_SAMPLE_CRX_ID_A "fbdfdjidlbaaclpflhcdceeoemlkbehd"
+#define CHROME_SAMPLE_CRX_ID_W _T("fbdfdjidlbaaclpflhcdceeoemlkbehd")
+//extension version
+#define CHROME_SAMPLE_CRX_VER _T("1.0.5_0")
+#define CHROME_SAMPLE_CRX_VER_A "1.0.5"
+
+/********************************************************************
+install extension by chrome extension store or drag *.crx file on chrome 
+extension tab page, then you can get the config generate by chrome 
+in 'Secure Preferences' file
+*********************************************************************/
+#define CHROME_SAMPLE_EXT_OL_CONFIG_A "{\"active_permissions\":{\"api\":[\"nativeMessaging\",\"tabs\",\"webNavigation\"],\"explicit_host\":[\"http://*/*\",\"https://*/*\"]},\"creation_flags\":9,\"from_bookmark\":false,\"from_webstore\":true,\"granted_permissions\":{\"api\":[\"nativeMessaging\",\"tabs\",\"webNavigation\"],\"explicit_host\":[\"http://*/*\",\"https://*/*\"]},\"initial_keybindings_set\":true,\"install_time\":\"13058603716634482\",\"location\":1,\"manifest\":{\"background\":{\"scripts\":[\"background.js\"]},\"description\":\"百度杀毒，保护您的上网安全\",\"icons\":{\"128\":\"images/install_logo.png\",\"16\":\"images/menu_logo.png\",\"48\":\"images/extension_logo.png\"},\"key\":\"MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAooTracdic3lXa6l9nIxyLuWD2FDG1MMmzkNwUidGYI/a4aF9jisYnEMYxKJzHtk0Jh/13z9BjWWqm5ZUZbQaEKdmzcJA/aAlYe2rXOPpcoVw8XpVsZc9mKk9qz95DMmH1R4ENobhRfWsLlofdnAA15SqigHoX5/JdwLtzhhBCQiZBpWA8nh4Eozi+Th47+UyNvS9VPbQEQqGIIIwtd4YHGG8xZ/KymGEmc9v5Rh52DNzb2bq6QlMrEQee9+tLc+qy3M7BLD3qfRt4m2g+4faF3SuCACUlPNO0BF8yE7EG/iGcnszKDYj7ya82CGGl7not9A1tQ8zFft/koGRKd6o5wIDAQAB\",\"manifest_version\":2,\"name\":\"百度杀毒上网保护\",\"permissions\":[\"tabs\",\"webNavigation\",\"http://*/*\",\"https://*/*\",\"nativeMessaging\"],\"update_url\":\"https://clients2.google.com/service/update2/crx\",\"version\":\"1.0.5\"},\"path\":\"fbdfdjidlbaaclpflhcdceeoemlkbehd\\\\1.0.5_0\",\"state\":1,\"was_installed_by_default\":false,\"was_installed_by_oem\":false}"
+#define CHROME_SAMPLE_EXT_OL_CONFIG_W _T("{\"active_permissions\":{\"api\":[\"nativeMessaging\",\"tabs\",\"webNavigation\"],\"explicit_host\":[\"http://*/*\",\"https://*/*\"]},\"creation_flags\":9,\"ephemeral_app\":false,\"from_bookmark\":false,\"from_webstore\":true,\"granted_permissions\":{\"api\":[\"nativeMessaging\",\"tabs\",\"webNavigation\"],\"explicit_host\":[\"http://*/*\",\"https://*/*\"]},\"initial_keybindings_set\":true,\"install_time\":\"13059566385771333\",\"location\":1,\"manifest\":{\"background\":{\"scripts\":[\"background.js\"]},\"description\":\"百度杀毒，保护您的上网安全\",\"icons\":{\"128\":\"images/install_logo.png\",\"16\":\"images/menu_logo.png\",\"48\":\"images/extension_logo.png\"},\"key\":\"MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAooTracdic3lXa6l9nIxyLuWD2FDG1MMmzkNwUidGYI/a4aF9jisYnEMYxKJzHtk0Jh/13z9BjWWqm5ZUZbQaEKdmzcJA/aAlYe2rXOPpcoVw8XpVsZc9mKk9qz95DMmH1R4ENobhRfWsLlofdnAA15SqigHoX5/JdwLtzhhBCQiZBpWA8nh4Eozi+Th47+UyNvS9VPbQEQqGIIIwtd4YHGG8xZ/KymGEmc9v5Rh52DNzb2bq6QlMrEQee9+tLc+qy3M7BLD3qfRt4m2g+4faF3SuCACUlPNO0BF8yE7EG/iGcnszKDYj7ya82CGGl7not9A1tQ8zFft/koGRKd6o5wIDAQAB\",\"manifest_version\":2,\"name\":\"百度杀毒上网保护\",\"permissions\":[\"tabs\",\"webNavigation\",\"http://*/*\",\"https://*/*\",\"nativeMessaging\"],\"update_url\":\"https://clients2.google.com/service/update2/crx\",\"version\":\"1.0.5\"},\"path\":\"fbdfdjidlbaaclpflhcdceeoemlkbehd\\\\1.0.5_0\",\"state\":1,\"was_installed_by_default\":false,\"was_installed_by_oem\":false}")
+
+/********************************************************************
+if you have native application, change these configures
+*********************************************************************/
+//native application path
+#define NAPP_PATH _T("ChromeNativeMessage.exe")
+//register name
+#define CHROME_NATIVEAPP_REG_PATH _T("SOFTWARE\\Google\\Chrome\\NativeMessagingHosts\\com.baidu.antivirus")
+//host name
+#define CHROME_SAMPLE_NATIVE_HOST_NAME "com.baidu.antivirus"
+//host configure file path
+#define CHROME_SAMPLE_NATIVE_APPCONFIG_FILE _T("\\com.baidu.antivirus.json")
+
+//for test, just ignore it
+#define TEST_CRX
+#ifdef _TEST_CRX
+#define _JSON_NODE_STRING _T("")
+#define CHROME_SEC_PREFERENCE_PATH _T("\\Google\\Chrome\\User Data\\Default\\Secure Preferences_180_en")
+#define CHROME_TEST_CONFIG_PATH _T("C:\\test.config")
+#endif
+#define CHROME_SEC_PREFERENCE_GEN_PATH _T("\\Google\\Chrome\\User Data\\Default\\Secure Preferences test")
+#define CHROME_TEST_CRX_PATH "afbbkciigbkkonnbcagfkobemjhehfem"
+#define CHROME_SAMPLE_CRX_ID_T _T("fbdfdjidlbaaclpflhcdceeoemlkbehd")
+/////
+
 #include "stdafx.h"
 #include <shlobj.h>
 #include <Shlwapi.h>
