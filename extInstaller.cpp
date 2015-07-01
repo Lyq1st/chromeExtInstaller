@@ -284,6 +284,11 @@ std::string CExtInstaller::GenerateMessagePath()
 	return path;
 }
 
+std::string CExtInstaller::FormatJsonConfig(std::string config){
+
+	return config;
+}
+
 std::string CExtInstaller::GenerateExtConfigHMAC(std::string device_id,
 												 std::string path,
 												 std::string plaint,

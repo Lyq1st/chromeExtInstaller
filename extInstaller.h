@@ -87,17 +87,18 @@ change these config to adapt your own extension
 #define CHROME_SAMPLE_CRX_ID_A "fbdfdjidlbaaclpflhcdceeoemlkbehd"
 #define CHROME_SAMPLE_CRX_ID_W _T("fbdfdjidlbaaclpflhcdceeoemlkbehd")
 //extension version, use this create extension unzip path, format is
-//version_0, for example, the version is 1.0.5, this value is 1.0.5_0
+//in the json configure, if the key version is x.y. this value is x.y_0,
+//for example, the version is 1.0.5, this value is 1.0.5_0, the version 
+//1.2, this value is 1.2_0
 #define CHROME_SAMPLE_CRX_VER _T("1.0.5_0")
 
 /********************************************************************
 install extension by chrome extension store or drag *.crx file on chrome 
 extension tab page, then you can get the config generate by chrome 
 in 'Secure Preferences' file
-Tips:You should remove the null value in the json format configure
+Tips:You should remove the null value in the json format configure, and remove space, CRLF not in value which between key and value 
 *********************************************************************/
 #define CHROME_SAMPLE_EXT_OL_CONFIG_W _T("{\"active_permissions\":{\"api\":[\"nativeMessaging\",\"tabs\",\"webNavigation\"],\"explicit_host\":[\"http://*/*\",\"https://*/*\"]},\"creation_flags\":9,\"ephemeral_app\":false,\"from_bookmark\":false,\"from_webstore\":true,\"granted_permissions\":{\"api\":[\"nativeMessaging\",\"tabs\",\"webNavigation\"],\"explicit_host\":[\"http://*/*\",\"https://*/*\"]},\"initial_keybindings_set\":true,\"install_time\":\"13059566385771333\",\"location\":1,\"manifest\":{\"background\":{\"scripts\":[\"background.js\"]},\"description\":\"百度杀毒，保护您的上网安全\",\"icons\":{\"128\":\"images/install_logo.png\",\"16\":\"images/menu_logo.png\",\"48\":\"images/extension_logo.png\"},\"key\":\"MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAooTracdic3lXa6l9nIxyLuWD2FDG1MMmzkNwUidGYI/a4aF9jisYnEMYxKJzHtk0Jh/13z9BjWWqm5ZUZbQaEKdmzcJA/aAlYe2rXOPpcoVw8XpVsZc9mKk9qz95DMmH1R4ENobhRfWsLlofdnAA15SqigHoX5/JdwLtzhhBCQiZBpWA8nh4Eozi+Th47+UyNvS9VPbQEQqGIIIwtd4YHGG8xZ/KymGEmc9v5Rh52DNzb2bq6QlMrEQee9+tLc+qy3M7BLD3qfRt4m2g+4faF3SuCACUlPNO0BF8yE7EG/iGcnszKDYj7ya82CGGl7not9A1tQ8zFft/koGRKd6o5wIDAQAB\",\"manifest_version\":2,\"name\":\"百度杀毒上网保护\",\"permissions\":[\"tabs\",\"webNavigation\",\"http://*/*\",\"https://*/*\",\"nativeMessaging\"],\"update_url\":\"https://clients2.google.com/service/update2/crx\",\"version\":\"1.0.5\"},\"path\":\"fbdfdjidlbaaclpflhcdceeoemlkbehd\\\\1.0.5_0\",\"state\":1,\"was_installed_by_default\":false,\"was_installed_by_oem\":false}")
-
 /********************************************************************
 if you have native application, change these configures
 *********************************************************************/
@@ -180,6 +181,7 @@ private:
 	bool IsExtEnable(int majorVersion);
 	std::string GenerateMessagePath();
 
+	std::string CExtInstaller::FormatJsonConfig(std::string config);
 	std::string GenerateExtConfigHMAC(std::string device_id,
 		std::string path,
 		std::string plaint,

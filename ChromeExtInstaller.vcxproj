@@ -42,12 +42,12 @@
     <_ProjectFileVersion>12.0.30501.0</_ProjectFileVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <OutDir>$(SolutionDir)\bin\Debug\$(ProjectName)\</OutDir>
+    <OutDir>$(SolutionDir)bin\Debug\$(ProjectName)\</OutDir>
     <IntDir>$(OutDir)</IntDir>
     <LinkIncremental>true</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <OutDir>$(SolutionDir)\bin\Release\$(ProjectName)\</OutDir>
+    <OutDir>$(SolutionDir)bin\Release\$(ProjectName)\</OutDir>
     <IntDir>$(OutDir)</IntDir>
     <LinkIncremental>false</LinkIncremental>
   </PropertyGroup>
