@@ -79,16 +79,16 @@ change these config to adapt your own extension
 *********************************************************************
 ********************************************************************/
 
-//extension filename
+//your extension filename
 #define SAMPLE_CRX_PATH _T("BDChromeExt.crx")
-//extension tmp file
+//extension tmp file, any name you like
 #define TMP_CRX_ZIP_PATH _T("BDChromeExt.zip")
-//extension id
+//your extension id
 #define CHROME_SAMPLE_CRX_ID_A "fbdfdjidlbaaclpflhcdceeoemlkbehd"
 #define CHROME_SAMPLE_CRX_ID_W _T("fbdfdjidlbaaclpflhcdceeoemlkbehd")
-//extension version, use this create extension unzip path
+//extension version, use this create extension unzip path, format is
+//version_0, for example, the version is 1.0.5, this value is 1.0.5_0
 #define CHROME_SAMPLE_CRX_VER _T("1.0.5_0")
-#define CHROME_SAMPLE_CRX_VER_A "1.0.5"
 
 /********************************************************************
 install extension by chrome extension store or drag *.crx file on chrome 
