@@ -227,6 +227,10 @@ namespace chromeExtInstaller
 		switch (m_nMajorVersion)
 		{
 		case CHROME_SUPPORT_LAST_VER:
+		case 46:
+		case 45:
+		case 44:
+		case 43:
 		case 42:
 		case 41:
 		case 40:
