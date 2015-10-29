@@ -154,6 +154,10 @@ CHROME_EXT_INSTALL_ERRCODE CExtInstaller::GetHMACSeed(std::string &pre_hash_seed
 	switch (version)
 	{
 		case CHROME_SUPPORT_LAST_VER:
+		case 46:
+		case 45:
+		case 44:
+		case 43:
 		case 42:
 		case 41:
 		case 40:
