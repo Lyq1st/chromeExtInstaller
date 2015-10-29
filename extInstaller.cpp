@@ -596,7 +596,6 @@ tstring CExtInstaller::GetChromeExtensionRoot()
 
 	szExtensionRootPath.append(CHROME_EXTENSION_ROOT);
 
-	//LOG_INFO( _T("CExtInstaller::GetChromeExtensionRoot szExtensionRootPath%s\n"), szExtensionRootPath.c_str());
 	return szExtensionRootPath;
 }
 
@@ -666,7 +665,6 @@ bool CExtInstaller::GenerateNativeAppConfig()
 
 	root["name"] = Json::Value(CHROME_SAMPLE_NATIVE_HOST_NAME);
 	root["description"] = Json::Value("Chrome Native Messaging API Baidu AntiVirus Host");
-	//tstring nativeAppPath = m_webSafeDIr + WEBSAFE_NAPP_PATH;
 	std::string nativeAppPath = WtoA(m_CurrentDir +_T("\\") +NAPP_PATH);
 	root["path"] = Json::Value(nativeAppPath);
 	root["type"] = Json::Value("stdio");
@@ -733,6 +731,7 @@ bool CExtInstaller::PromotePrivilege(bool bEnable)
 	}
 	return false;
 }
+
 //just support enum 32bit chrome version
 bool CExtInstaller::IsChromeRun()
 {  

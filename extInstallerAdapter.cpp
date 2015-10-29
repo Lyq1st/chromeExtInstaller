@@ -176,10 +176,6 @@ namespace chromeExtInstaller
 			Json::Value chromeExtConfigRoot;
 			if(chromeExtConfigReader.parse(chromeExtConfig,chromeExtConfigRoot))
 			{
-// 				if( null_value == root[CHROME_EXTENSION_NODE][CHROME_SETTING_NODE])
-// 				{
-// 					LOG_INFO( _T("extInstallerAdapter::ext33_36ForceFix not supported 33-36 prefs\n"));
-// 				}
 
 				root[CHROME_EXTENSION_NODE][CHROME_SETTING_NODE]\
 					[CHROME_SAMPLE_CRX_ID_A] = Json::Value(chromeExtConfigRoot);\
