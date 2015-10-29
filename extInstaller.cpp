@@ -638,7 +638,6 @@ std::string CExtInstaller::GetFileData (tstring szFileName)
 	{
 		readString += lpData[i];
 	}
-	//readString = BDMStringUtils::AtoW((char*)lpData,dwSize);
 	if( NULL != lpData)
 		delete []lpData;
 	return readString;
